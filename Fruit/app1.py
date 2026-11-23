@@ -1,5 +1,5 @@
-```python
-```python
+
+from pathlib import Path
 import streamlit as st
 import numpy as np
 import tensorflow as tf
@@ -30,8 +30,16 @@ class_names = [
 # Modelleri yükle
 @st.cache_resource
 def load_models():
-    cnn_model = tf.keras.models.load_model("Fruits.model.keras")
-    vgg_model = tf.keras.models.load_model("Fruits_modelTL.keras")
+    base_path = Path(__file__).parent
+
+    cnn_model = tf.keras.models.load_model(
+        base_path / "Fruits.model.keras"
+    )
+
+    vgg_model = tf.keras.models.load_model(
+        base_path / "Fruits_modelTL.keras"
+    )
+
     return cnn_model, vgg_model
 
 try:
@@ -84,4 +92,3 @@ if uploaded_file is not None:
         st.write(
             f"{class_names[index]}: %{prediction[0][index] * 100:.2f}"
         )
-```
