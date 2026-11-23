@@ -72,7 +72,7 @@ if uploaded_file is not None:
     img_array = np.expand_dims(img_array, axis=0)
 
     if model_choice == "CNN":
-    img_array = img_array[..., ::-1]
+       img_array = img_array[..., ::-1]
 
     # Tahmin
     if model_choice == "CNN":
