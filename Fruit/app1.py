@@ -1,5 +1,4 @@
-```python
-```python
+
 import streamlit as st
 import numpy as np
 import tensorflow as tf
@@ -84,4 +83,3 @@ if uploaded_file is not None:
         st.write(
             f"{class_names[index]}: %{prediction[0][index] * 100:.2f}"
         )
-```
