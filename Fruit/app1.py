@@ -1,4 +1,4 @@
-
+from pathlib import Path
 import streamlit as st
 import numpy as np
 import tensorflow as tf
@@ -26,12 +26,22 @@ class_names = [
     'turnip', 'watermelon', 'pineapple'
 ]
 
+
 # Modelleri yükle
 @st.cache_resource
 def load_models():
-    cnn_model = tf.keras.models.load_model("Fruits.model.keras")
-    vgg_model = tf.keras.models.load_model("Fruits_modelTL.keras")
+    base_path = Path(__file__).parent
+
+    cnn_model = tf.keras.models.load_model(
+        base_path / "Fruits.model.keras"
+    )
+
+    vgg_model = tf.keras.models.load_model(
+        base_path / "Fruits_modelTL.keras"
+    )
+
     return cnn_model, vgg_model
+
 
 try:
     cnn_model, vgg_model = load_models()
