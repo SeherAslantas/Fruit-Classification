@@ -22,9 +22,9 @@ class_names = [
     'cucumber', 'eggplant', 'garlic', 'ginger', 'grapes',
     'jalepeno', 'kiwi', 'lemon', 'lettuce', 'mango',
     'onion', 'orange', 'paprika', 'pear', 'peas',
-    'pomegranate', 'potato', 'raddish', 'soy beans',
-    'spinach', 'sweetcorn', 'sweetpotato', 'tomato',
-    'turnip', 'watermelon', 'pineapple'
+    'pineapple', 'pomegranate', 'potato', 'raddish', 'soy beans',
+    'spinach', 'sweetcorn', 'sweetpotato', 'tomato', 'turnip',
+    'watermelon'
 ]
 
 # Modelleri yükle
@@ -70,6 +70,9 @@ if uploaded_file is not None:
     img = image.resize((128, 128))
     img_array = np.array(img).astype(np.float32) / 255.0
     img_array = np.expand_dims(img_array, axis=0)
+
+    if model_choice == "CNN":
+       img_array = img_array[..., ::-1]
 
     # Tahmin
     if model_choice == "CNN":
